@@ -1,0 +1,43 @@
+#!/bin/sh
+
+open_session() {
+	tmux new-session -s $1 -c $2 "nvim $3"
+	exit
+}
+
+workfile=~/test.txt
+workdir=~
+session_name="test"
+match=false
+
+if [ "$1" = work ] ; then
+	workfile=~/Logs/work.txt
+	session_name=work
+	match=true
+elif [ "$1" = nvim ] ; then
+	workdir=~/.config/nvim
+	workfile=${workdir}/init.lua
+	session_name=nvim
+	match=true
+else
+	for base in ~/msl ~/projects
+	do
+		workdir=${base}/${1}
+		if [ -d "$workdir" ] ; then
+			workfile=${workdir}
+			session_name=$1
+			match=true
+			break
+		fi
+	done
+
+fi
+
+if $match ; then
+	open_session $session_name $workdir $workfile
+else
+	echo "No match found for dirname $1"
+fi
+
+
+#tmux new-session -d 'work'
