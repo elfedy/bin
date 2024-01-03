@@ -58,6 +58,6 @@ while [ $end -gt $now ]; do
 	sleep 1
 done
 notify-send "Time is up" "       "
-play ~/projects/countdown/sound.mp3 </dev/null &>/dev/null &
+play ~/scripts/countdown/sound.mp3 </dev/null &>/dev/null &
 
 printf "\n"

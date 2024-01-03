@@ -11,7 +11,7 @@ session_name="test"
 match=false
 
 if [ "$1" = work ] ; then
-	workfile=~/Logs/work.txt
+	workfile=~/work.txt
 	session_name=work
 	match=true
 elif [ "$1" = nvim ] ; then
